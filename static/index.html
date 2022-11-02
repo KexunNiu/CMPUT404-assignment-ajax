@@ -53,7 +53,7 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
 
     xhr.open('POST', url, true);
     xhr.setRequestHeader("Accept","application/json")
-    xhr.setRequestHeader("Content-type","application/json")
+    xhr.overrideMimeType("application/json")
     xhr.send(JSON.stringify(objects));
     // Remember to use application/json !
 }
@@ -144,7 +144,7 @@ function addEntity(entity, data) {
     world[entity] = data;
     drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-    sendJSONXMLHTTPRequest("/entity/"+entity,data,{})
+    sendJSONXMLHTTPRequest("/entity/"+entity,data,data=>{})
 }
 
 var counter = 0;
